@@ -3,7 +3,8 @@ package com.nihed.booknetwork.user;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,13 +18,14 @@ public class Token {
     @GeneratedValue
     private Integer id;
 
+    @Column(unique = true)
     private String token;
-    private LocalDate createdAt;
-    private LocalDate expiredAt;
-    private LocalDate validatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime expiresAt;
+    private LocalDateTime validatedAt;
 
     @ManyToOne
-    @JoinColumn(name="userId", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
 }
